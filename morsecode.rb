@@ -4,5 +4,27 @@ def decode_char(str)
   return $morsecode[str]
 end
 
-puts decode_char("...")
+def decode_word(str)
+  letters  = str.split(' ')
+  word = ''
+  letters.each{|letter| word+=$morsecode[letter]}
+  return word
+end
 
+
+def decode(str)
+  words = str.split('   ')
+  text = ''
+  words.each{
+    |word| letters  = word.split(' ')
+    letters.each{|letter| text+=$morsecode[letter]}
+    text+=' '
+  }
+  return text
+end
+puts decode_char("-..")
+
+puts decode_word("-- -.--")
+
+puts decode("-- -.--   -. .- -- .")
+puts decode(".-   -... --- -..-   ..-. ..- .-.. .-..   --- ..-.   .-. ..- -... .. . ...")
