@@ -11,7 +11,6 @@ def decode_word(str)
   return word
 end
 
-
 def decode(str)
   words = str.split('   ')
   text = ''
@@ -22,9 +21,13 @@ def decode(str)
   }
   return text
 end
+
 puts decode_char("-..")
 
 puts decode_word("-- -.--")
 
 puts decode("-- -.--   -. .- -- .")
+
 puts decode(".-   -... --- -..-   ..-. ..- .-.. .-..   --- ..-.   .-. ..- -... .. . ...")
+
+end
