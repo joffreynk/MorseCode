@@ -1,13 +1,12 @@
-$morsecode  = { ".-" => "A", "-..." => "B", "-.-." => "C", "-.." => "D", "." => "E", "..-." => "F", "--." => "G", "...." => "H", ".." => "I", ".---" => "J", "-.-" => "K", ".-.." => "L", "--" => "M", "-." => "N", "---" => "O", ".--." => "P", "--.-" => "Q", ".-." => "R", "..." => "S", "-" => "T", "..-" => "U", "...-" => "V", ".--" => "W", "-..-" => "X", "-.--" => "Y", "--.." => "Z"}
-
-def decode_char(str) 
-  return $morsecode[str]
+def decode_char(str)
+  morsecode  = { ".-" => "A", "-..." => "B", "-.-." => "C", "-.." => "D", "." => "E", "..-." => "F", "--." => "G", "...." => "H", ".." => "I", ".---" => "J", "-.-" => "K", ".-.." => "L", "--" => "M", "-." => "N", "---" => "O", ".--." => "P", "--.-" => "Q", ".-." => "R", "..." => "S", "-" => "T", "..-" => "U", "...-" => "V", ".--" => "W", "-..-" => "X", "-.--" => "Y", "--.." => "Z"}
+  return morsecode[str]
 end
 
 def decode_word(str)
   letters  = str.split(' ')
   word = ''
-  letters.each{|letter| word+=$morsecode[letter]}
+  letters.each{|letter| word+=decode_char(letter)}
   return word
 end
 
@@ -15,8 +14,7 @@ def decode(str)
   words = str.split('   ')
   text = ''
   words.each{
-    |word| letters  = word.split(' ')
-    letters.each{|letter| text+=$morsecode[letter]}
+    |word| text += decode_word(word)
     text+=' '
   }
   return text
@@ -30,4 +28,3 @@ puts decode("-- -.--   -. .- -- .")
 
 puts decode(".-   -... --- -..-   ..-. ..- .-.. .-..   --- ..-.   .-. ..- -... .. . ...")
 
-end
